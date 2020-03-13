@@ -175,22 +175,18 @@ complement_primer_precursors <- bind_rows(complement_primer_precursor_17, comple
                                           complement_primer_precursor_19, complement_primer_precursor_20, 
                                           complement_primer_precursor_21, complement_primer_precursor_22, 
                                           complement_primer_precursor_23, .id = NULL)
-file <- complement_primer_precursor_17
-whichcol <-1
-Lastcall <- file[ ,whichcol]
-NotAorT<- !(Lastcall %in% c("A","T"))
-file <-file[NotAorT, ]
+###############################################################################################3
+#### Ange's Code: Finding primers and complement primer strands that begin and end with G/C
+###############################################################################################
 
 
-whichcol <-ncol(file)
-Lastcall <- file[ ,whichcol]
-NotAorT<- !(Lastcall %in% c("A","T"))
-file[NotAorT, ]
-
+### Complement strand
 Allcomplementprecursors<-list(complement_primer_precursor_17,complement_primer_precursor_18,
      complement_primer_precursor_19,complement_primer_precursor_20,
      complement_primer_precursor_21,complement_primer_precursor_22,
      complement_primer_precursor_23)
+
+list_of_good_complement_precursors <- list()
 
 for(file in Allcomplementprecursors){
 whichcol <-1
@@ -202,10 +198,14 @@ file <-file[NotAorT, ]
 whichcol <-ncol(file)
 Lastcall <- file[ ,whichcol]
 NotAorT<- !(Lastcall %in% c("A","T"))
-print(file[NotAorT, ])
+list_of_good_complement_precursors[[ncol(file) - 17]] <- file[NotAorT, ]
  
 }
 
+good_complement_precursors <- bind_rows(list_of_good_complement_precursors)
+good_complement_precursors
+
+####### Primer precursor strand 
 
 Allprimerprecursors<-list(primer_precursor_17,primer_precursor_18,
                               primer_precursor_19,primer_precursor_20,
@@ -226,5 +226,7 @@ for(file in Allprimerprecursors){
   
 }
 
+good_primer_precursors <- bind_rows(list_of_good_primer_precursors)
+good_primer_precursors
 
 
