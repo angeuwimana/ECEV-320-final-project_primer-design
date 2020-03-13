@@ -189,12 +189,13 @@ Allcomplementprecursors<-list(complement_primer_precursor_17,complement_primer_p
 list_of_good_complement_precursors <- list()
 
 for(file in Allcomplementprecursors){
+  #removing rows that start with A or T
 whichcol <-1
 Lastcall <- file[ ,whichcol]
 NotAorT<- !(Lastcall %in% c("A","T"))
 file <-file[NotAorT, ]
 
-
+#removing rows that end with A or T
 whichcol <-ncol(file)
 Lastcall <- file[ ,whichcol]
 NotAorT<- !(Lastcall %in% c("A","T"))
@@ -212,6 +213,7 @@ Allprimerprecursors<-list(primer_precursor_17,primer_precursor_18,
                               primer_precursor_21,primer_precursor_22,
                               primer_precursor_23)
 
+list_of_good_primer_precursors <- list()
 for(file in Allprimerprecursors){
   whichcol <-1
   Lastcall <- file[ ,whichcol]
@@ -222,7 +224,8 @@ for(file in Allprimerprecursors){
   whichcol <-ncol(file)
   Lastcall <- file[ ,whichcol]
   NotAorT<- !(Lastcall %in% c("A","T"))
-  print(file[NotAorT, ])
+  file <-file[NotAorT, ]
+  list_of_good_primer_precursors[[ncol(file) - 17]] <- file
   
 }
 
