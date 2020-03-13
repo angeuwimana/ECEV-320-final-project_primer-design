@@ -192,8 +192,6 @@ Allcomplementprecursors<-list(complement_primer_precursor_17,complement_primer_p
      complement_primer_precursor_21,complement_primer_precursor_22,
      complement_primer_precursor_23)
 
-Allcomplementprecursors[(1)]
-
 for(file in Allcomplementprecursors){
 whichcol <-1
 Lastcall <- file[ ,whichcol]
@@ -205,18 +203,28 @@ whichcol <-ncol(file)
 Lastcall <- file[ ,whichcol]
 NotAorT<- !(Lastcall %in% c("A","T"))
 print(file[NotAorT, ])
-  
+ 
 }
 
-# test <- complement_primer_precursors[complement_primer_precursors$X1 %in% c("G","C"), ]
-# test2 <- test[test$X2 %in% c("G","C"),]
-# test3 <- complement_primer_precursors[complement_primer_precursors$X1 %in% c("G","C") & complement_primer_precursors$X2 %in% c("G", "C"), ]
 
-#1 convert the dataframe into strings (vectors of strings), making each row a string
-#2 use regex (regular expressions) with grep/grepl to make sure the string starts with or ends with a G or a C
+Allprimerprecursors<-list(primer_precursor_17,primer_precursor_18,
+                              primer_precursor_19,primer_precursor_20,
+                              primer_precursor_21,primer_precursor_22,
+                              primer_precursor_23)
 
-z <- c("ace", "cat", "eat")
-
+for(file in Allprimerprecursors){
+  whichcol <-1
+  Lastcall <- file[ ,whichcol]
+  NotAorT<- !(Lastcall %in% c("A","T"))
+  file <-file[NotAorT, ]
+  
+  
+  whichcol <-ncol(file)
+  Lastcall <- file[ ,whichcol]
+  NotAorT<- !(Lastcall %in% c("A","T"))
+  print(file[NotAorT, ])
+  
+}
 
 
 
