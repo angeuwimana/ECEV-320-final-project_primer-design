@@ -175,6 +175,38 @@ complement_primer_precursors <- bind_rows(complement_primer_precursor_17, comple
                                           complement_primer_precursor_19, complement_primer_precursor_20, 
                                           complement_primer_precursor_21, complement_primer_precursor_22, 
                                           complement_primer_precursor_23, .id = NULL)
+file <- complement_primer_precursor_17
+whichcol <-1
+Lastcall <- file[ ,whichcol]
+NotAorT<- !(Lastcall %in% c("A","T"))
+file <-file[NotAorT, ]
+
+
+whichcol <-ncol(file)
+Lastcall <- file[ ,whichcol]
+NotAorT<- !(Lastcall %in% c("A","T"))
+file[NotAorT, ]
+
+Allcomplementprecursors<-list(complement_primer_precursor_17,complement_primer_precursor_18,
+     complement_primer_precursor_19,complement_primer_precursor_20,
+     complement_primer_precursor_21,complement_primer_precursor_22,
+     complement_primer_precursor_23)
+
+Allcomplementprecursors[(1)]
+
+for(file in Allcomplementprecursors){
+whichcol <-1
+Lastcall <- file[ ,whichcol]
+NotAorT<- !(Lastcall %in% c("A","T"))
+file <-file[NotAorT, ]
+
+
+whichcol <-ncol(file)
+Lastcall <- file[ ,whichcol]
+NotAorT<- !(Lastcall %in% c("A","T"))
+print(file[NotAorT, ])
+  
+}
 
 # test <- complement_primer_precursors[complement_primer_precursors$X1 %in% c("G","C"), ]
 # test2 <- test[test$X2 %in% c("G","C"),]
