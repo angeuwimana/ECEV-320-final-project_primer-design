@@ -205,6 +205,7 @@ list_of_good_complement_precursors[[ncol(file) - 17]] <- file[NotAorT, ]
 
 good_complement_precursors <- bind_rows(list_of_good_complement_precursors)
 good_complement_precursors
+good_complement_precursors[-c(18:24),]
 
 ####### Primer precursor strand 
 
@@ -232,4 +233,5 @@ for(file in Allprimerprecursors){
 good_primer_precursors <- bind_rows(list_of_good_primer_precursors)
 good_primer_precursors
 
+good_primer_precursors[-c(18:24),]
 
