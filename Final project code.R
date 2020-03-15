@@ -1,6 +1,6 @@
 #import raw data and library
 
-library(dplyr)
+library(tidyverse)
 plasmid_sequence <- read.delim("human TET2 sequence single strand.txt", header = FALSE, stringsAsFactors = FALSE, sep = "\t")
 
 #b is the DNA position we want the primer, here we use an example, b=1680, and you may change to any numbers
@@ -205,7 +205,14 @@ list_of_good_complement_precursors[[ncol(file) - 17]] <- file[NotAorT, ]
 
 good_complement_precursors <- bind_rows(list_of_good_complement_precursors)
 good_complement_precursors
-good_complement_precursors[-c(18:24),]
+
+# Excluding complement_precursors with 22 base pairs 
+
+good_complement_precursors <-good_complement_precursors[-c(18:24),]
+good_complement_precursors %>% 
+  unite("Complement", X1:X24, na.rm = TRUE, sep = "")
+
+
 
 ####### Primer precursor strand 
 
@@ -233,5 +240,10 @@ for(file in Allprimerprecursors){
 good_primer_precursors <- bind_rows(list_of_good_primer_precursors)
 good_primer_precursors
 
-good_primer_precursors[-c(18:24),]
+# Exclude primer_precursors with 22 base pairs 
+
+good_primer_precursors <- good_primer_precursors[-c(18:24),]
+
+good_primer_precursors %>% 
+  unite("Primer", X1:X24, na.rm = TRUE, sep = "")
 
